@@ -1,14 +1,90 @@
 #DOCUMENTATION
 https://zetcode.com/python/openpyxl/?utm_content=cmp-true
 
-from openpyxl import load_workbook
+---------------------------
 
-#open existing file
+#GET INFO FOR SHEET
+from openpyxl import Workbook
 wb = load_workbook(filename='C:/Users/USER IT-04/Desktop/conturi contabile folosite in Odoo.xlsx')
-
 #select Sheet1
 sheet_1 = wb['Sheet1']
 
+#get min,max row, min max col
+sheet_1.min_row
+sheet_1.max_row
+sheet_1.min_column
+sheet_1.max_column
 
-for row in sheet_1.iter_rows(min_row=1, max_col=2, max_row=35, values_only=True):
+#get a list of all sheets
+wb.sheetnames
+
+#get a sheet name
+sheet_1.title
+
+----------------------------
+
+#OPEN AN EXISTING FILE AND GET DATA
+from openpyxl import load_workbook
+#open existing file
+wb = load_workbook(filename='C:/Users/USER IT-04/Desktop/conturi contabile folosite in Odoo.xlsx')
+#select Sheet1
+sheet_1 = wb['Sheet1']
+
+#get entire row(tuple format) by specific row/col
+for row in sheet_1.iter_rows(min_row=1, min_col=3, max_row=6, max_col=3, values_only=True):
     print(row)
+    
+#get cell by row/col first method
+a2 = sheet['A2']
+#get  cell by row/col second method
+a3 = sheet.cell(row=3, column=1)
+
+#get data by a specic range
+cells = sheet_1['A1': 'C6']
+for col_a, col_b, col_c in cells:
+    print(col_a.value, col_b.value, col_c.value)
+
+---------------------------
+
+#CREATE A NEW WORKBOOK,NEW SHEET ADD DATA AND SAVE FILE
+from openpyxl import Workbook
+#create a new workbook
+book = Workbook()
+#When a new workbook is created always with at least one worksheet.
+#Select workbook
+sheet_1 = book.active
+
+#add data to cell first method
+sheet_1['A1'] = 56
+#add data to cell second method
+sheet_1.cell(row=2, column=2).value = 2
+
+#add entire row to sheet
+rows = ((88, 46, 57),(89, 38, 12))
+for row in rows:
+    sheet_1.append(row)
+    
+#create a new sheet
+wb.create_sheet("sheet_2")
+
+#delete a sheet
+wb.remove_sheet(sheet1)
+    
+#save data to file
+book.save("sample.xlsx")
+
+----------------------------
+
+#ADD IMAGE
+
+from openpyxl import Workbook
+from openpyxl.drawing.image import Image
+
+book = Workbook()
+sheet = book.active
+img = Image("icesid.png")
+sheet['A1'] = 'This is Sid'
+sheet.add_image(img, 'B2')
+book.save("sheet_image.xlsx")
+
+
