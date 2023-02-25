@@ -18,7 +18,7 @@ sheet_1.max_column
 #get a list of all sheets
 wb.sheetnames
 
-#get a sheet name
+#get a sheet title
 sheet_1.title
 
 ----------------------------
