@@ -1,0 +1,14 @@
+#DOCUMENTATION
+https://zetcode.com/python/openpyxl/?utm_content=cmp-true
+
+from openpyxl import load_workbook
+
+#open existing file
+wb = load_workbook(filename='C:/Users/USER IT-04/Desktop/conturi contabile folosite in Odoo.xlsx')
+
+#select Sheet1
+sheet_1 = wb['Sheet1']
+
+
+for row in sheet_1.iter_rows(min_row=1, max_col=2, max_row=35, values_only=True):
+    print(row)
