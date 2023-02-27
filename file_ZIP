@@ -1,4 +1,4 @@
-#Creating ZIP file from multiple files
+#CREATING ZIP FILE FROM MULTIPLE FILE
 In this method, ZipFile() creates a ZIP file in which the files which are to be compressed are added. 
 
 
