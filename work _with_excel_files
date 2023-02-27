@@ -31,16 +31,16 @@ wb = load_workbook(filename='C:/Users/USER IT-04/Desktop/conturi contabile folos
 #select a sheet by name 
 sheet_1 = wb['Sheet1']
 
-#get entire row(tuple format) by specific row/col
+#get data by specific range rows and range cols (tuple)
 for row in sheet_1.iter_rows(min_row=1, min_col=3, max_row=6, max_col=3, values_only=True):
     print(row)
     
-#get cell by row/col first method
+#or get specific cell by row/col 
 a2 = sheet['A2']
 #get  cell by row/col second method
 a3 = sheet.cell(row=3, column=1)
 
-#get data by a specic range
+#or get data by a specic range
 cells = sheet_1['A1': 'C6']
 for col_a, col_b, col_c in cells:
     print(col_a.value, col_b.value, col_c.value)
