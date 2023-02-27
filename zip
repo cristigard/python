@@ -12,7 +12,7 @@ dir_name = f'{datetime.date.today()}_{rnd_no}'.replace('-','_')
 dir_path = os.path.join(current_dir,dir_name).replace('\\','/')
 
 
-#create an zip object
+#create an zip object(without compression=zipfile.ZIP_DEFLATED the file will not be compressed)
 with zipfile.ZipFile(f'{dir_path}.zip', 'w', compression=zipfile.ZIP_DEFLATED) as zip_object:
    # Adding files that need to be zipped(filename = file to be added in archive, arcname = how file will be named in archive)
    zip_object.write(filename='C:/Users/USER IT-04/Desktop/file_xml.xml', arcname='file_name.xml')
