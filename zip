@@ -2,12 +2,20 @@
 In this method, ZipFile() creates a ZIP file in which the files which are to be compressed are added. 
 
 
-import os
-from zipfile import ZipFile
+import zipfile
 
-with ZipFile('C:/Users/USER IT-04/Desktop/file.zip', 'w') as zip_object:
-   # Adding files that need to be zipped
-   zip_object.write('C:/Users/USER IT-04/Desktop/file_xml.xml', 'file_name.xml')
+
+rnd_no = random.getrandbits(32)
+# current_dir = os.getcwd()
+current_dir = "C:/Users/USER IT-04/Desktop/"
+dir_name = f'{datetime.date.today()}_{rnd_no}'.replace('-','_')
+dir_path = os.path.join(current_dir,dir_name).replace('\\','/')
+
+
+#create an zip object
+with zipfile.ZipFile(f'{dir_path}.zip', 'w', compression=zipfile.ZIP_DEFLATED) as zip_object:
+   # Adding files that need to be zipped(filename = file to be added in archive, arcname = how file will be named in archive)
+   zip_object.write(filename='C:/Users/USER IT-04/Desktop/file_xml.xml', arcname='file_name.xml')
 
    
 
