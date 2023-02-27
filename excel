@@ -23,11 +23,12 @@ sheet_1.title
 
 ----------------------------
 
-#OPEN AN EXISTING FILE AND GET DATA
+#OPEN AN EXISTING FILE AND GET DATA FROM A SHEET
 from openpyxl import load_workbook
 #open existing file
 wb = load_workbook(filename='C:/Users/USER IT-04/Desktop/conturi contabile folosite in Odoo.xlsx')
-#select Sheet1
+
+#select a sheet by name 
 sheet_1 = wb['Sheet1']
 
 #get entire row(tuple format) by specific row/col
@@ -43,8 +44,38 @@ a3 = sheet.cell(row=3, column=1)
 cells = sheet_1['A1': 'C6']
 for col_a, col_b, col_c in cells:
     print(col_a.value, col_b.value, col_c.value)
+    
+#close file
+wb.close()
 
 ---------------------------
+
+#OPEN AN EXISTING FILE AND GET DATA FROM ALL SHEETS
+from openpyxl import load_workbook
+#open existing file
+wb = load_workbook(filename='C:/Users/example.xlsx')
+
+#get all workbooks
+work_sheets = wb.worksheets
+
+sheet_1 = []
+sheet_2 = []
+
+#for sheet in sheets
+for sheet in work_sheets:
+    #for every row in every sheet where are values
+    for rows in sheet.iter_rows():        
+        row = [cell.value if cell.value is not None else '' for cell in rw]
+        #add Sheet1 rows to sheet_1 list
+        if sheet.title == 'Sheet1':
+            sheet_1.append(rows)
+        #add Sheet2 rows to sheet_2 list
+        elif sheet.title == 'Sheet2':
+            sheet_2.append(row)
+wb.close()
+wb.save(filename='C:/Users/example.xlsx')
+
+----------------------------
 
 #CREATE A NEW WORKBOOK,NEW SHEET ADD DATA AND SAVE FILE
 from openpyxl import Workbook
