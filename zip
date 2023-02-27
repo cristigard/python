@@ -1,0 +1,13 @@
+#Creating ZIP file from multiple files
+In this method, ZipFile() creates a ZIP file in which the files which are to be compressed are added. 
+
+
+import os
+from zipfile import ZipFile
+
+with ZipFile('C:/Users/USER IT-04/Desktop/file.zip', 'w') as zip_object:
+   # Adding files that need to be zipped
+   zip_object.write('C:/Users/USER IT-04/Desktop/file_xml.xml', 'file_name.xml')
+
+   
+
