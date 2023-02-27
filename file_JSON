@@ -1,3 +1,4 @@
+#APPEND DATA TO EXISTING JSON FILE
 import json
 
 val = 'AF/2345/096434'
