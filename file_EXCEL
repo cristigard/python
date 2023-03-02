@@ -4,7 +4,7 @@ https://zetcode.com/python/openpyxl/?utm_content=cmp-true
 ---------------------------
 
 #GET INFO FOR SHEET
-from openpyxl import Workbook
+from openpyxl import load_workbook
 wb = load_workbook(filename='C:/Users/USER IT-04/Desktop/conturi contabile folosite in Odoo.xlsx')
 #select Sheet1
 sheet_1 = wb['Sheet1']
