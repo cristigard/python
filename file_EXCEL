@@ -102,7 +102,7 @@ wb.create_sheet("sheet_2")
 sheet_2 = wb['sheet_2']
 
 #delete a sheet
-wb.remove_sheet(sheet1)
+wb.remove(sheet1)
     
 #save data to file
 wb.save("sample.xlsx")
