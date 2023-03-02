@@ -1,0 +1,5 @@
+#CHECK IF A MAIL IS VALID
+def email_validation(email):
+    # Use regular expressions to check if the email address is valid
+    regex = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+    return re.match(regex, email)
