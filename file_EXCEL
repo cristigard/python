@@ -98,6 +98,9 @@ for row in rows:
 #create a new sheet
 wb.create_sheet("sheet_2")
 
+#select sheet_2
+sheet_2 = wb['sheet_2']
+
 #delete a sheet
 wb.remove_sheet(sheet1)
     
