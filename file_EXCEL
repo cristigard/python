@@ -80,10 +80,10 @@ wb.save(filename='C:/Users/example.xlsx')
 #CREATE A NEW WORKBOOK,NEW SHEET ADD DATA AND SAVE FILE
 from openpyxl import Workbook
 #create a new workbook
-book = Workbook()
+wb = Workbook()
 #When a new workbook is created always with at least one worksheet.
 #Select workbook
-sheet_1 = book.active
+sheet_1 = wb.active
 
 #add data to cell first method
 sheet_1['A1'] = 56
@@ -102,7 +102,7 @@ wb.create_sheet("sheet_2")
 wb.remove_sheet(sheet1)
     
 #save data to file
-book.save("sample.xlsx")
+wb.save("sample.xlsx")
 
 ----------------------------
 
