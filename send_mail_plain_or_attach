@@ -15,21 +15,21 @@ from email import encoders
 
 
 # Sending email
-def send_mail(email_body, email_subject, path=None, file=None):
+def send_mail(email_body, email_subject, file_path=None,):
 
     #secure context for sending mail
     context = ssl.create_default_context()
 
     # email login
-    email_user = ''
-    email_passwd = ''
+    email_user = 'cristian.gard28@gmail.com'
+    email_passwd = 'ybfdpeuvifkkntee'
 
     # email to/from
-    email_from = ""
-    email_to = ""
+    email_from = "cristian.gard28@gmail.com"
+    email_to = "gardcristian@gmail.com"
 
     # send mail without attachment
-    if path is None and file is None:
+    if file_path is None:
         msg = EmailMessage()
         msg['Subject'] = email_subject
         msg['From'] = email_from
@@ -62,11 +62,10 @@ def send_mail(email_body, email_subject, path=None, file=None):
         # send mail
         try:
             # attach file
-            filepath = str(path + file)
-            with open(filepath, "rb") as attachment:
+            with open(file_path, "rb") as attachment:
                 # Add file as application/octet-stream
                 # instance of MIMEBase and named as payload
-                payload = MIMEBase('application', 'octet-stream', Name=filepath)
+                payload = MIMEBase('application', 'octet-stream', Name=file_path)
                 # To change the payload into encoded form
                 payload.set_payload(attachment.read())
 
@@ -74,7 +73,7 @@ def send_mail(email_body, email_subject, path=None, file=None):
             encoders.encode_base64(payload)
 
             # add header
-            payload.add_header('Content-Disposition', 'attachment', filename=file)
+            payload.add_header('Content-Disposition', 'attachment', filename=file_path)
 
             # attach the instance 'payload' to instance 'msg'
             msg.attach(payload)
@@ -88,6 +87,3 @@ def send_mail(email_body, email_subject, path=None, file=None):
         except Exception:
             print(traceback.format_exc())
             sys.exit()
-            
-           
- 
