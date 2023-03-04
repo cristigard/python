@@ -1,6 +1,8 @@
 #SEND MAIL PLAIN OR WITH ATTACHMENT
+# send email with Google mail
 # if send mail without attach use only email_body and email_subject params
 # if send mail with attach use all params
+
 
 # trace errors from Exceptions
 import traceback
@@ -15,9 +17,8 @@ from email import encoders
 
 
 # Sending email
-def send_mail(email_body, email_subject, file_path=None,):
-
-    #secure context for sending mail
+def send_mail(email_body, email_subject, path=None, attach_name=None):
+    # secure context for sending mail
     context = ssl.create_default_context()
 
     # email login
@@ -29,7 +30,7 @@ def send_mail(email_body, email_subject, file_path=None,):
     email_to = "gardcristian@gmail.com"
 
     # send mail without attachment
-    if file_path is None:
+    if path is None and attach_name is None:
         msg = EmailMessage()
         msg['Subject'] = email_subject
         msg['From'] = email_from
@@ -62,10 +63,11 @@ def send_mail(email_body, email_subject, file_path=None,):
         # send mail
         try:
             # attach file
-            with open(file_path, "rb") as attachment:
+            filepath = str(path + attach_name)
+            with open(filepath, "rb") as attachment:
                 # Add file as application/octet-stream
                 # instance of MIMEBase and named as payload
-                payload = MIMEBase('application', 'octet-stream', Name=file_path)
+                payload = MIMEBase('application', 'octet-stream', Name=filepath)
                 # To change the payload into encoded form
                 payload.set_payload(attachment.read())
 
@@ -73,7 +75,7 @@ def send_mail(email_body, email_subject, file_path=None,):
             encoders.encode_base64(payload)
 
             # add header
-            payload.add_header('Content-Disposition', 'attachment', filename=file_path)
+            payload.add_header('Content-Disposition', 'attachment', filename=attach_name)
 
             # attach the instance 'payload' to instance 'msg'
             msg.attach(payload)
