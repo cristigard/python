@@ -1,1 +1,2 @@
 #must execute uvicorn by root!!
+sudo -i
