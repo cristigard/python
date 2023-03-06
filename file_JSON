@@ -8,4 +8,15 @@ with open("tst.json","r") as file_read_mode:
     #append new key,val
     js[val] = val
     with open("tst.json","w") as file_write_mode:
-        file_write_mode(json.dumps(js))
+        file_write_mode.write(json.dumps(js))
+        
+#or the smecker way :)
+import json
+
+val = 'AF/2345/096434'
+
+with open("tst.json","r") as file_read_mode, open("tst.json","w") as file_write_mode:
+    js = json.load(file_read_mode)
+    #append new key,val
+    js[val] = val
+    file_write_mode.write(json.dumps(js))
