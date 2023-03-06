@@ -1,0 +1,29 @@
+from sshtunnel import SSHTunnelForwarder
+
+# Set up SSH tunnel parameters
+ssh_host = ''
+ssh_port = 22
+ssh_user = ''
+ssh_password = ''
+
+# Set up local and remote ports for SSH tunnel
+local_port = 63333
+remote_port = 5432
+
+# Create SSH tunnel object
+server = SSHTunnelForwarder(
+    ssh_host,
+    ssh_username=ssh_user,
+    ssh_password=ssh_password,
+    ssh_port=ssh_port,
+    remote_bind_address=('127.0.0.1', remote_port),
+    local_bind_address=('127.0.0.1', local_port)
+)
+
+#start tunnel
+server.start()
+
+#do stuff trought tunnel connection
+
+#stop tunnel
+server.stop()
