@@ -4,19 +4,11 @@ In this method, ZipFile() creates a ZIP file in which the files which are to be 
 
 import zipfile
 
-
-rnd_no = random.getrandbits(32)
-# current_dir = os.getcwd()
-current_dir = "C:/Users/USER IT-04/Desktop/"
-dir_name = f'{datetime.date.today()}_{rnd_no}'.replace('-','_')
-dir_path = os.path.join(current_dir,dir_name).replace('\\','/')
-
-
 #create an zip object(without compression=zipfile.ZIP_DEFLATED the file will not be compressed)
-with zipfile.ZipFile(f'{dir_path}.zip', 'w', compression=zipfile.ZIP_DEFLATED) as zip_object:
+with zipfile.ZipFile(f'path/to/test.zip', 'w', compression=zipfile.ZIP_DEFLATED) as zip_object:
    # Adding files that need to be zipped(filename = file to be added in archive, arcname = how file will be named in archive folder)
    #if want arcname='file_name.xml' to be inside a subfolder -> arcname='subfolder/file_name.xml'
-   zip_object.write(filename='C:/Users/USER IT-04/Desktop/file_xml.xml', arcname='file_name.xml')
+   zip_object.write(filename='path/to/file/to/be/compressed', arcname='name_of_file_after_compression')
 
    
 
