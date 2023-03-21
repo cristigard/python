@@ -1,0 +1,4 @@
+import json
+stringA = "[21,42, 15]"
+# String to list
+res = json.loads(stringA)
