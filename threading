@@ -1,0 +1,30 @@
+import threading
+import time
+
+
+def thread_1():
+    print('starting thred 1')
+    time.sleep(5)
+    print('closing thread 1')
+
+def thread_2():
+    print('starting thread 2')
+    for _ in range(7):
+        if t1.is_alive(): #execute code if thread 1 is still working
+            print('working inside thread 2')
+            time.sleep(1)
+        else:
+            break
+    print("closing thread 2")
+
+
+t1 = threading.Thread(target= thread_1)
+t2 = threading.Thread(target= thread_2)
+
+t1.start()
+t2.start()
+
+
+t1.join() # Wait for thread 1 to finish to perfrom the rest of code
+t2.join() #Wait for thread 2 to finish to perfrom the rest of code
+print('exit program')
