@@ -1,0 +1,11 @@
+#count code execution
+
+import time
+start = time.perf_counter()
+
+do something
+
+stop = time.perf_counter()
+
+#seconds
+print(round(stop-start,2))
