@@ -1,0 +1,19 @@
+#timer decorator(function execution time)
+
+def timer(func):
+    import time
+    def wrapper(*args,**kwargs):
+        start = time.time()
+        rv = func(*args,**kwargs)
+        print('Time:', round(time.time()-start,2),'sec(s)')
+        return rv
+    return wrapper
+
+
+@timer
+def f1(r):
+    for i in range(r):
+        pass
+
+
+f1(100000000)
