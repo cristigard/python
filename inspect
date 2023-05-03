@@ -1,0 +1,13 @@
+#inspect objects data(info)
+
+import inspect
+
+def some_func(x):
+  print(x)
+  
+class SomeClass:
+  pass
+  
+#show code for object  
+print(inspect.getsource(some_func)
+print(inspect.getsource(SomeClass)
