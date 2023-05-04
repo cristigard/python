@@ -1,3 +1,4 @@
+#execute a function while other function is waiting
 import threading
 import time
 
