@@ -1,0 +1,5 @@
+#lock a resource(variabile) while running a thread
+
+import threading
+
+lock = threading.Lock
