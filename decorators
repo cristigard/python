@@ -1,19 +1,19 @@
 #timer decorator(function execution time)
+import time
 
 def timer(func):
-    import time
+    #*args,**kwargs are the params of func
     def wrapper(*args,**kwargs):
         start = time.time()
-        rv = func(*args,**kwargs)
+        retrun_value = func(*args,**kwargs)
         print('Time:', round(time.time()-start,2),'sec(s)')
-        return rv
+        return retrun_value
     return wrapper
 
 
 @timer
-def f1(r):
-    for i in range(r):
-        pass
+def f1(t):
+    time.sleep(t)
 
 
-f1(100000000)
+f1(3)
