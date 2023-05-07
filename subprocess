@@ -1,0 +1,13 @@
+import subprocess
+
+#execute script without function params sys.argv
+result = subprocess.run(['/path/to/your/bin/python3', '/some_folder/some_sub_folder/get_data.py'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+#OR
+#execute function with functions params sys.argv
+result = subprocess.run(['/path/to/your/bin/python3','/some_folder/some_sub_folder/get_data.py', f'{TD["new"]["table_column"]}'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+ 
+#catch errors from subprocess in a file
+#correct execution return code 0
+if result.returncode != 0:
+  with open('/path/to/error_file','w') as f:
+    f.write(f'{result.stderr}')
