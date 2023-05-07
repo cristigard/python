@@ -1,9 +1,11 @@
 #timer decorator(function execution time)
+from functools import wraps
+
 import time
 
 def timer(func):
-    #*args,**kwargs are the params of func
-    def wrapper(*args,**kwargs):
+    @wraps(func) #The wraps decorator from the functools can be used to update the metadata of a wrapped function to match that of the original function.
+    def wrapper(*args,**kwargs): #*args,**kwargs are the params of func
         start = time.time()
         retrun_value = func(*args,**kwargs)
         print('Time:', round(time.time()-start,2),'sec(s)')
