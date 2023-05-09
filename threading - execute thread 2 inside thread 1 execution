@@ -1,4 +1,4 @@
-#execute a function while other function is waiting
+#execute thread 2 inside thread 1 execution
 import threading
 import time
 
