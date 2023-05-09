@@ -1,0 +1,5 @@
+import easygui
+import openpyxl
+
+excel_file = easygui.fileopenbox(msg="Choose the XLSX file to learn from", default="*.xlsx")
+workbook = openpyxl.load_workbook(excel_file)
