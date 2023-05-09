@@ -3,3 +3,9 @@ import openpyxl
 
 excel_file = easygui.fileopenbox(msg="Choose the XLSX file to learn from", default="*.xlsx")
 workbook = openpyxl.load_workbook(excel_file)
+
+# Get a list of worksheet names
+worksheet_names = workbook.sheetnames
+
+# Let the user select the worksheet
+selected_worksheet_name = easygui.choicebox("Select a worksheet", "Worksheet selection", worksheet_names)
