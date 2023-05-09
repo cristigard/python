@@ -1,0 +1,39 @@
+#start multithreadings concurently
+
+import threading
+import time
+
+def eat():
+    time.sleep(3)
+    print('finish to eat')
+
+def drink():
+    time.sleep(3)
+    print('finish to drink')
+
+def clean():
+    time.sleep(3)
+    print('finish to clean')
+
+start = time.perf_counter()
+
+t1= threading.Thread(target=eat)
+t2= threading.Thread(target=drink)
+t3= threading.Thread(target=clean)
+
+t1.start()
+t2.start()
+t3.start()
+
+#active threads number
+print(threading.active_count())
+
+#active threads ids list
+print(threading.enumerate())
+
+#dont execute code before all threads are finished
+t1.join()
+t2.join()
+t3.join()
+
+print(time.perf_counter()-start)
