@@ -25,7 +25,8 @@ t2 = threading.Thread(target= thread_2)
 t1.start()
 t2.start()
 
+# Wait for threads to finish to perfrom the rest of code
+t1.join() 
+t2.join()
 
-t1.join() # Wait for thread 1 to finish to perfrom the rest of code
-t2.join() #Wait for thread 2 to finish to perfrom the rest of code
 print('exit program')
