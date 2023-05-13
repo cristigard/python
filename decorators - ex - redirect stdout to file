@@ -1,0 +1,16 @@
+import sys
+
+def redirect_stdout_to_file(filename):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            with open(filename, 'w') as f:
+                # Redirect stdout to the file
+                sys.stdout = f
+                # Call the decorated function
+                result = func(*args, **kwargs)
+                # Restore stdout to its original value
+                sys.stdout = sys.__stdout__
+                # Return the result of the decorated function
+                return result
+        return wrapper
+    return decorator
