@@ -1,0 +1,23 @@
+#add exception to file
+import traceback
+
+def catch_stderr_to_file(filename):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            try:
+                result = func(*args, **kwargs)
+            except Exception:
+                with open(filename,'a') as f:
+                    f.write(traceback.format_exc())
+            else:
+                return result
+        return wrapper
+    return decorator
+
+
+@catch_stderr_to_file('error.log')
+def my_function():
+    # Cause an error that will be written to stderr
+    print(1 / 0)
+
+my_function()
