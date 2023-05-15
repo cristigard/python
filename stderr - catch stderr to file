@@ -6,10 +6,10 @@ def catch_stderr_to_file(filename):
         def wrapper(*args, **kwargs):
             try:
                 result = func(*args, **kwargs)
-            except Exception:
+            except Exception as err:
                 with open(filename,'a') as f:
                     traceback.print_exc(file=f)
-                sys.exit()
+                raise err
             else:
                 return result
         return wrapper
