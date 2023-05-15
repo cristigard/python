@@ -8,7 +8,8 @@ def catch_stderr_to_file(filename):
                 result = func(*args, **kwargs)
             except Exception:
                 with open(filename,'a') as f:
-                    f.write(traceback.format_exc())
+                    traceback.print_exc(file=f)
+                sys.exit()
             else:
                 return result
         return wrapper
