@@ -1,0 +1,7 @@
+import traceback
+
+try:
+  result = func(*args, **kwargs)
+except Exception:
+  with open(filename,'a') as f:
+    traceback.print_exc(file=f)
