@@ -1,3 +1,6 @@
+#if i have try/except blocks in decorated function must raise exc when occurs (if not, decorator dont catch exception)
+#see first example
+
 import logging
 from logging.handlers import RotatingFileHandler
 
@@ -23,9 +26,20 @@ def logging_stderr(filename):
         return wrapper
     return decorator
 
+#example with try/except block in decorated function
 @logging_stderr('script.log')
 def my_function():
-    # Cause an error that will be written to stderr
+    try:
+        print(1/0)
+    except Exception as exc:
+        #do something
+        raise exc
+print(my_function())
+
+#example without try/except block in decorated function
+@logging_stderr('script.log')
+def my_function():
     print(1/0)
 print(my_function())
+
 
