@@ -1,0 +1,31 @@
+import logging
+from logging.handlers import RotatingFileHandler
+
+def logging_stderr(filename):
+
+    logger_script = logging.getLogger(__name__)
+    logger_script.setLevel(logging.INFO)
+    logger_script.propagate = False
+    handler = RotatingFileHandler(filename=filename, maxBytes=20000, backupCount=5)
+    formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
+    handler.setFormatter(formatter)
+    logger_script.addHandler(handler)
+
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            try:
+                result = func(*args, **kwargs)
+            except Exception as exc:
+                logger_script.exception(exc)
+                raise exc
+            else:
+                return result
+        return wrapper
+    return decorator
+
+@logging_stderr('script.log')
+def my_function():
+    # Cause an error that will be written to stderr
+    print(1/0)
+print(my_function())
+
