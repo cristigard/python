@@ -1,0 +1,15 @@
+#args
+def func(*args):
+    for arg in args:
+        print(arg)
+
+items = ['a','b','c']
+func(*items) -> 'a' 'b' 'c'
+
+#kwargs
+def func(**kwargs):
+    for key, value in kwargs.items():
+        print(key, value)
+
+data = {'name': 'John'}
+func(**data) -> name John
