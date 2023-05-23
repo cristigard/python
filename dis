@@ -1,0 +1,7 @@
+#disamble object
+import dis
+
+def ana(a):
+    b = 30
+    return a+b
+print(dis.dis(ana))
