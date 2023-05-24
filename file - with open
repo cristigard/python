@@ -1,0 +1,29 @@
+
+Options:
+'r': Read mode. Opens the file for reading. This is the default mode.
+'w': Write mode. Opens the file for writing. If the file already exists, its contents are truncated. If the file does not exist, a new file is created.
+'a': Append mode. Opens the file for writing at the end. The file is not truncated, and new data is appended to the existing content.
+'x': Exclusive creation mode. Opens the file for writing, but only if it does not already exist. If the file exists, an error is raised.
+'b': Binary mode. Opens the file in binary mode for reading or writing. This mode is used to handle non-text files, such as images or binary data.
+'t': Text mode. Opens the file in text mode for reading or writing. This mode is used to handle text-based files (default behavior).
+
+'rb': Read the file in binary mode.
+'wt': Write the file in text mode.
+'a+': Append and read the file.
+'xb': Create a new file in binary mode (exclusive creation).
+'w+b': Write and read the file in binary mode
+
+#how to use wb
+import requests
+img_urls = [
+    'https://images.unsplash.com/photo-1516117172878-fd2c41f4a759',
+    'https://images.unsplash.com/photo-1532009324734-20a7a5813719',
+    'https://images.unsplash.com/photo-1524429656589-6633a470097c'
+          ]
+def download_image(img_url):
+    img_bytes = requests.get(img_url).content
+    img_name = img_url.split('/')[3]
+    img_name = f'{img_name}.jpg'
+    with open(img_name, 'wb') as img_file:
+        img_file.write(img_bytes)
+        print(f'{img_name} was downloaded...')
