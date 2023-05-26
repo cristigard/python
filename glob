@@ -1,0 +1,17 @@
+import glob
+
+# Retrieve all the py files in the current directory
+glob.glob("*.py")
+
+#Retrive all files recursively from specific dir
+glob.glob('**/*.js', root_dir='path', recursive=True)
+
+#Retrive all files that start with b or c
+glob.glob('[bc].js')
+
+#Retrive files that contains specific letters and '?' look for any letter
+glob.glob('??nana.py')
+
+#if have much files use generator
+#Retrive files location in generator(iglob)
+glob.iglob('**/*.js', root_dir='path', recursive=True)
