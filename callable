@@ -5,5 +5,5 @@ a = 4
 def b():
     pass
     
-print(callable(b)) -> False    
+print(callable(a)) -> False    
 print(callable(b)) -> True
