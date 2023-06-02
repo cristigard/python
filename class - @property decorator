@@ -1,0 +1,60 @@
+#https://www.freecodecamp.org/news/python-property-decorator/
+
+class Person:
+    def __init__(self, name):
+        self._name = name
+
+    #getter method(make attribute (protected / non-public) read only)
+    @property
+    def name(self):
+        return self._name
+        
+    #setter method(add setter if want to set (and validate) the name attribute after it was read only by getter)
+    @name.setter
+    def name(self, value):
+        if isinstance(value, str):
+            self._name = value
+        else:
+            raise TypeError('name must be str')
+
+    #deleter method(delete name attribute(set to None))
+    @name.deleter
+    def name(self):
+        self._name = None
+        
+ion = Person('ion', 7)
+print(ion.name)
+ion.name = 'gigi'
+print(ion.name)
+del ion.name
+print(ion.name)
+
+---------------------------------------------------------
+
+#how to use @property getter
+
+class Circle:
+    def __init__(self, radius):
+        self.radius = radius
+
+    @property
+    def diameter(self):
+        return self.radius * 2
+
+    @property
+    def circumference(self):
+        return 2 * 3.14 * self.radius
+
+    @property
+    def area(self):
+        return 3.14 * (self.radius ** 2)
+
+
+# Create an instance of Circle
+my_circle = Circle(5)
+
+# Access the attributes defined with @property
+print(my_circle.diameter)       # Output: 10
+print(my_circle.circumference)  # Output: 31.4
+print(my_circle.area)           # Output: 78.5
+
