@@ -31,7 +31,7 @@ print(threading.active_count())
 #active threads ids list
 print(threading.enumerate())
 
-#dont execute code before all threads are finished
+#wait all threads to be finished before move on
 t1.join()
 t2.join()
 t3.join()
