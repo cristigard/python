@@ -1,0 +1,13 @@
+last_cod = '00099'
+print(len(last_cod))
+count_zero = 0
+
+for zero in last_cod:
+    if zero == '0':
+        count_zero += 1
+    else:
+        break
+print(count_zero)
+cod_int = int(last_cod) + 1
+new_cod = str(cod_int).zfill(len(last_cod))
+print(new_cod)
