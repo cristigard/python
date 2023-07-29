@@ -15,14 +15,13 @@ cd Python-3.8.0
 ./configure --enable-optimizations
 The --enable-optimizations option optimizes the Python binary by running multiple tests. This makes the build process slower.
 
+For faster build time, modify the -j to correspond to the number of cores in your processor. You can find the number by typing nproc.
 Start the Python 3.8 build process:
 make -j 8
 
-For faster build time, modify the -j to correspond to the number of cores in your processor. You can find the number by typing nproc.
-When the build process is complete, install the Python binaries by typing:
-
-sudo make altinstall
 Do not use the standard make install as it will overwrite the default system python3 binary.
+When the build process is complete, install the Python binaries by typing:
+sudo make altinstall
 
 That’s it. Python 3.8 has been installed and ready to be used. Verify it by typing:
 python3.8 --version
