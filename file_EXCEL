@@ -108,6 +108,25 @@ wb.remove(sheet1)
 wb.save("sample.xlsx")
 
 ---------------------------
+# MERGE CELLS AND ADD DATA / ALLIGN
+
+#create a new sheet
+wb.create_sheet("sheet_2")
+
+#select sheet_2
+sheet_2 = wb['sheet_2']
+
+#merge cell for start values
+merged_cell_start = sheet_2.merge_cells('B1:E1')
+
+# Add text to the merged cells, use first column
+sheet_2['B1'].value = start_date
+
+# Center the text in the cell
+sheet_2['B1'].alignment = Alignment(horizontal='center', vertical='center')
+
+
+---------------------------
 
 #GET ROW NUMBER WHEN ITERATE
 
