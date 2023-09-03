@@ -10,3 +10,10 @@ class LoggingDict(dict):
     def __delitem__(self, key):
         print(f'Deleting {key}')
         super().__delitem__(key)
+
+a = LoggingDict()
+
+a[0]='subcribe'
+
+x = a[0]
+del a[0]
