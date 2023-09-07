@@ -30,3 +30,19 @@ table.append({'NR_NIR': '2', 'NR_INTRARE': '1110', 'GESTIUNE': 'gest', 'DEN_GEST
 
 
 table.close()
+
+-------------------
+
+Modify data in dbf file
+
+import dbf
+db = dbf.Table(str('C:/Users/USER IT-04/Desktop/t/con_o.dbf'), codepage='ascii')
+db.open()
+with db:
+     idx = db.create_index(lambda rec: rec.col_name)
+     match = idx.search(match='000046')
+     for cell in list(match):
+         with cell:
+            i.col_name = '202222'
+
+ db.close()
