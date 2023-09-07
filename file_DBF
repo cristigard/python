@@ -36,7 +36,7 @@ table.close()
 Modify data in dbf file
 
 import dbf
-db = dbf.Table(str('C:/Users/USER IT-04/Desktop/t/con_o.dbf'), codepage='ascii')
+db = dbf.Table(str('C:/Users/table.dbf'), codepage='ascii')
 db.open()
 with db:
      idx = db.create_index(lambda rec: rec.col_name)
@@ -46,3 +46,17 @@ with db:
             i.col_name = '202222'
 
  db.close()
+
+-----------------
+
+#more condition in row
+#untested
+import dbf
+db = dbf.Table('MEST2.DBF')
+with db:
+    procod_idx = db.create_index(lambda rec: (rec.codigo, rec.procod))
+    match = procod_idx.search(match=(11, '000001'))
+    record = match[0]
+    with record:
+        record.proest = 25
+        record.dt_atualiz = '14/07/15 16:52'
