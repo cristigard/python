@@ -1,9 +1,11 @@
-#take care of subprocess.run(...,shell=True) have security risks, use instead [] like i do in example
+#take care of subprocess.run(...,shell=True) have security risks if USER insert command , use instead [] like i do in example
 import subprocess
 
 #execute script without function params sys.argv
 result = subprocess.run(['/path/to/your/bin/python3', '/some_folder/some_sub_folder/script.py'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
 #OR
+
 #execute function with functions params sys.argv
 result = subprocess.run(['/path/to/your/bin/python3','/some_folder/some_sub_folder/script.py'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
  
@@ -12,3 +14,17 @@ result = subprocess.run(['/path/to/your/bin/python3','/some_folder/some_sub_fold
 if result.returncode != 0:
   with open('/path/to/error_file','w') as f:
     f.write(f'{result.stderr}')
+
+#else
+import subprocess
+
+# Replace 'YourPasswordHere', 'sgapi', and the paths with your actual values
+rsync_command = "rsync -av -e 'sshpass -p YourPasswordHere ssh' sgapi@192.168.111.55:/home/sgapi/SagaApi /mnt/hgfs/shared/test"
+
+# Execute the rsync command
+try:
+    subprocess.run(rsync_command, shell=True, check=True)
+except subprocess.CalledProcessError as e:
+    print(f"rsync command failed with error code {e.returncode}")
+except Exception as e:
+    print(f"An error occurred: {str(e)}")
