@@ -17,7 +17,7 @@ if result.returncode != 0:
 
 #else
 import subprocess
-rsync_command = "rsync -a -e 'sshpass -p 'sgapi56' ssh' sgapi@192.168.111.55:/home/sgapi/SagaApi /mnt/hgfs/shared/test"
+rsync_command = "rsync -a -e 'sshpass -p 'pass' ssh' sgapi@192.168.111.55:/home/sgapi/SagaApi /mnt/hgfs/shared/test"
 try:
     subprocess.run(rsync_command, shell=True, check=True,stderr=subprocess.PIPE, text=True )
 except subprocess.CalledProcessError as rsync_err:
