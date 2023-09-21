@@ -17,14 +17,13 @@ if result.returncode != 0:
 
 #else
 import subprocess
-
-# Replace 'YourPasswordHere', 'sgapi', and the paths with your actual values
-rsync_command = "rsync -av -e 'sshpass -p YourPasswordHere ssh' sgapi@192.168.111.55:/home/sgapi/SagaApi /mnt/hgfs/shared/test"
-
-# Execute the rsync command
+rsync_command = "rsync -a -e 'sshpass -p 'sgapi56' ssh' sgapi@192.168.111.55:/home/sgapi/SagaApi /mnt/hgfs/shared/test"
 try:
-    subprocess.run(rsync_command, shell=True, check=True)
-except subprocess.CalledProcessError as e:
-    print(f"rsync command failed with error code {e.returncode}")
+    subprocess.run(rsync_command, shell=True, check=True,stderr=subprocess.PIPE, text=True )
+except subprocess.CalledProcessError as rsync_err:
+    #get error from rsync
+    print(rsync_err.stderr)
 except Exception as e:
-    print(f"An error occurred: {str(e)}")
+    #get python error
+    print(e)
+
