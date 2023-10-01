@@ -1,0 +1,10 @@
+def get_func_exceptions(func):
+    def wrapper(*args, **kwargs):
+        try:
+            result = func(*args, **kwargs)  # Call the wrapped function 'func'
+        except Exception as exc:
+            print(exc)
+            raise exc  # Re-raise the exception after printing it
+        else:
+            return result  # Return the result if no exception occurred
+    return wrapper
