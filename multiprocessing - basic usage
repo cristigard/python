@@ -1,0 +1,47 @@
+import time
+import multiprocessing
+
+def c1(n):
+    results = []
+    for i in range(n):
+        results.append(i ** i)
+    print("done 1")
+    return results
+
+def c2(n):
+    results = []
+    for i in range(n):
+        results.append(i ** i)
+    print("done 2")
+    return results
+
+def c3(n):
+    results = []
+    for i in range(n):
+        results.append(i ** i)
+    print("done 3")
+    return results
+
+if __name__ == '__main__':
+    start = time.perf_counter()
+
+    # c1(10000)
+    # c2(10000)
+    # c3(10000)
+
+    p1 = multiprocessing.Process(target=c1, args=(10000,))
+    p2 = multiprocessing.Process(target=c2, args=(10000,))
+    p3 = multiprocessing.Process(target=c3, args=(10000,))
+
+    p1.start()
+    p2.start()
+    p3.start()
+
+    p1.join()
+    p2.join()
+    p3.join()
+
+    print("Total time:", time.perf_counter() - start)
+
+Time without multiproc = 13 sec
+Time with multiproc = 5 sec
