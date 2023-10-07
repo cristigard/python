@@ -1,0 +1,26 @@
+#it can be used only with one function with multiple params
+import time
+import multiprocessing
+
+def funct(n):
+    results = []
+    for i in range(n):
+        results.append(i ** i)
+    print("done funct")
+    return results
+
+if __name__ == '__main__':
+    start = time.perf_counter()
+
+    c1(10000)
+    c1(10000)
+    c1(10000)
+
+    # with multiprocessing.Pool(processes=3) as pool:
+    #     result = pool.map(func=funct, iterable=[10000,10000,1000])
+
+
+    print("Total time:", time.perf_counter() - start)
+
+Time with Pool : 5 sec
+Time without Pool : 13 sec
