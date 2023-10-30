@@ -1,0 +1,6 @@
+import re
+hidden_chars_pattern = re.compile(r'[^ -~]')
+ch = 'C2/C5 - UP soft\xa0GBP 4.4.7.2'
+
+if hidden_chars_pattern.search(ch):
+            print(True)
