@@ -1,0 +1,13 @@
+from typing import Union
+from pydantic import BaseModel, ValidationError
+
+class Item(BaseModel):
+    name: Union[str, None] = None
+    price: float
+
+try:
+    item = Item(price="q")
+except ValidationError as e:
+        print(e.errors())
+else:
+    print(item.model_dump())
