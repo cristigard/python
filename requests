@@ -1,0 +1,8 @@
+import requests
+
+data = {
+    "name": "Foo",
+    "description": "An optional description"}
+
+# request body
+r = requests.post('http://192.168.88.192:8000/items/', json=data)
