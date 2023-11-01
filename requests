@@ -2,7 +2,21 @@ import requests
 
 data = {
     "name": "Foo",
-    "description": "An optional description"}
+    "description": "Bar"}
 
-# request body
-r = requests.post('http://192.168.88.192:8000/items/', json=data)
+#request query params
+response = requests.get('https://example.com/api/resource', params=data)
+
+#request headers
+headers = {'Authorization': 'Bearer <token>'}
+response = requests.get('https://example.com/api/resource', headers=headers)
+
+#request body
+response = requests.post('https://example.com/api/resource', json=data)
+
+#request put
+response = requests.post('https://example.com/api/resource', data=data)
+
+#request path params
+resource_id = 123
+response = requests.get(f'https://example.com/api/resource/{resource_id}')
