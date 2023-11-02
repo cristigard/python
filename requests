@@ -15,7 +15,7 @@ response = requests.get('https://example.com/api/resource', headers=headers)
 response = requests.post('https://example.com/api/resource', json=data)
 
 #request put
-response = requests.post('https://example.com/api/resource', data=data)
+response = requests.put('https://example.com/api/resource', json=data)
 
 #request path params
 resource_id = 123
