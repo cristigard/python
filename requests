@@ -3,19 +3,20 @@ import requests
 data = {
     "name": "Foo",
     "description": "Bar"}
+string_data -> string, xml, etc
 
-#request query params
+#request GET (query params)
 response = requests.get('https://example.com/api/resource', params=data)
 
-#request headers
+#request GET (headers)
 headers = {'Authorization': 'Bearer <token>'}
 response = requests.get('https://example.com/api/resource', headers=headers)
 
-#request body
+#request body POST/PUT (json data)
 response = requests.post('https://example.com/api/resource', json=data)
 
-#request put
-response = requests.put('https://example.com/api/resource', json=data)
+#request body POST/PUT (string data)
+response = requests.put('https://example.com/api/resource', data=string_data)
 
 #request path params
 resource_id = 123
