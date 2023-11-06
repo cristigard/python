@@ -1,0 +1,4 @@
+import os
+path = r"C:\Users\USER IT-04\Desktop\export.csv"
+a = path.split(os.sep)
+print(a)
