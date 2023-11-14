@@ -1,7 +1,0 @@
-oauth2 - basic workflow
-
-#authenticate with user and password and get token
-import requests
-data = {'username':'johndoe', 'password':'secret'}
-r = requests.post("http://192.168.88.192:8000/token", data=data) <- request "data" will automatically encode the data in the "application/x-www-form-urlencoded" format expected by oauth2(workflow)
-tk = r.json()
