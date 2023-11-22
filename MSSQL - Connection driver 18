@@ -1,0 +1,29 @@
+#install driver 18 from Microsoft
+https://learn.microsoft.com/en-us/sql/connect/odbc/linux-mac/installing-the-microsoft-odbc-driver-for-sql-server?view=sql-server-ver16&tabs=ubuntu18-install%2Calpine17-install%2Cdebian8-install%2Credhat7-13-install%2Crhel7-offline
+
+
+import pyodbc
+
+# Replace these with your actual values
+server = ''
+database = ''
+username = ''
+password = ''
+
+# Establish a connection
+conn_str = f'DRIVER={{ODBC Driver 18 for SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password}'
+conn = pyodbc.connect(conn_str)
+
+# Create a cursor from the connection
+cursor = conn.cursor()
+
+# Execute a sample query
+cursor.execute("select * from test")
+row = cursor.fetchone()
+
+# Print the result
+print(row)
+
+# Close the cursor and connection
+cursor.close()
+conn.close()
