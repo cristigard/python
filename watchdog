@@ -1,4 +1,3 @@
-#monitor dir change
 import time
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
@@ -10,8 +9,14 @@ class MyHandler(FileSystemEventHandler):
         # File modified event handler
         print(f"File {event.src_path} has been modified")
 
+    def on_created(self, event):
+        if event.is_directory:
+            return
+        # File created event handler
+        print(f"File {event.src_path} has been created")
+
 def main():
-    path = "/mnt/hgfs/shared/watch_dog"  # Replace with the directory you want to monitor
+    path = "C:/Users/USER IT-04/Desktop/shared/salis_accounting/invoices/static/invoices"
     event_handler = MyHandler()
     observer = Observer()
     observer.schedule(event_handler, path, recursive=True)
