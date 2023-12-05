@@ -1,0 +1,64 @@
+https://github.com/password123456/setup-selenium-with-chrome-driver-on-ubuntu_debian
+Setup selenium with chrome driver on ubuntu/debian
+Hits
+
+Setting up and running Chrome and Selenium on the ubuntu or debian
+The guide is based on ubuntu 22.04
+# cat /etc/lsb-release
+DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=22.04
+DISTRIB_CODENAME=jammy
+DISTRIB_DESCRIPTION="Ubuntu 22.04.3 LTS"
+
+confirmed at 2023.10.04
+Step 1: update the all packages, if necessary
+# apt update
+# apt upgrade
+Step 2: download chrome stable package
+# wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+Step 3: Install google-chrome
+# dpkg -i google-chrome-stable_current_amd64.deb
+Step 4: check installed chrome version
+# google-chrome --version
+Google Chrome 117.0.5938.132
+Step 5: Install selenium, webdriver-manager
+https://pypi.org/project/webdriver-manager/
+# pip3 install selenium
+# pip3 install webdriver-manager
+Step 6: create hello_world
+Run with Chrome Headless
+# vim test.py
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+
+options = Options()
+options.add_argument('--headless')
+options.add_argument('--no-sandbox')
+options.add_argument('--disable-dev-shm-usage')
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+
+driver.get("https://python.org")
+print(driver.title)
+driver.close()
+Run with Chrome GUI
+# vim test.py
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+
+options = Options()
+# options.add_argument('--headless')
+# options.add_argument('--no-sandbox')
+options.add_argument('--disable-dev-shm-usage')
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+
+driver.get("https://python.org")
+print(driver.title)
+driver.close()
+Step 7: run test.py and check chrome is available
+# python3 test.py
+Welcome to Python.org
+Step 8: that's all. enjoy it.:)
