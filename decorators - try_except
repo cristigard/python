@@ -1,0 +1,21 @@
+#exc result with details
+import traceback
+
+
+class DetailedException(Exception):
+    def __init__(self, original_exception):
+        self.original_exception = original_exception
+        self.traceback = ''.join(traceback.format_exception(type(original_exception), original_exception.__traceback__))
+        super().__init__(str(original_exception))
+    
+    def __str__(self):
+        return f"{self.traceback}"
+
+
+def try_except_result(func):
+    def _wrapped(*args, **kwargs):
+        try:
+            return func(*args, **kwargs)
+        except Exception as exc:
+            return DetailedException(exc)
+    return _wrapped
