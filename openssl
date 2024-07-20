@@ -1,0 +1,33 @@
+from OpenSSL import SSL
+import socket
+
+# Paths to the certificate and private key files
+cert_file = '/etc/letsencrypt/live/yourdomain.com/fullchain.pem'
+key_file = '/etc/letsencrypt/live/yourdomain.com/privkey.pem'
+
+# Create a context for the SSL connection
+context = SSL.Context(SSL.TLS_SERVER_METHOD)
+context.use_certificate_file(cert_file)
+context.use_privatekey_file(key_file)
+
+# Create a socket and wrap it in an SSL context
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server_socket.bind(('0.0.0.0', 443))
+server_socket.listen(5)
+
+# Accept a connection and wrap it in an SSL context
+while True:
+    conn, addr = server_socket.accept()
+    ssl_conn = SSL.Connection(context, conn)
+    ssl_conn.set_accept_state()
+    ssl_conn.do_handshake()
+    print(f"Connection from {addr}")
+
+    # Send and receive data
+    ssl_conn.send(b"HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\n\r\nHello, SSL!\n")
+    data = ssl_conn.recv(1024)
+    print(data)
+
+    # Close the connection
+    ssl_conn.shutdown()
+    ssl_conn.close()
