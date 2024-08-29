@@ -1,0 +1,26 @@
+#Install pip-tools
+pip install pip-tools
+
+#Create a requirements.in file with basic dependencies listed.
+#Example requirements.in
+Django>=3.0,<4.0
+requests
+
+#Run pip-compile to generate the requirements.txt file
+pip-compile
+This command will read requirements.in, resolve all dependencies, and create or update the requirements.txt file with pinned versions.
+
+#Install Dependencies:
+pip install -r requirements.txt
+
+#To update dependencies to their latest versions, you can use pip-compile with the --upgrade flag:
+pip-compile --upgrade
+
+#Sync package
+Ensures that the packages installed in your Python environment match exactly the ones specified in the requirements.txt file
+#This means it will install any packages that are listed in requirements.txt but not currently installed and remove any packages that are installed but not listed in requirements.txt.
+pip-sync  
+
+#Check for Security Vulnerabilities (Optional):
+pip install safety
+safety check -r requirements.txt
