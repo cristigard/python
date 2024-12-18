@@ -1,0 +1,31 @@
+#make something when task 1 wait
+
+import time
+import threading
+
+
+
+def task_1(event):
+    print('start task 1')
+    time.sleep(3)
+    print('finish task 1')
+    event.set()
+
+
+def task_2(event):
+    while not event.is_set():
+        print('task2 running when')
+        time.sleep(1)
+    print('finisg task 2')
+
+
+task_1_event = threading.Event()
+
+t1 = threading.Thread(target=task_1,args=(task_1_event,))
+t2 = threading.Thread(target=task_2,args=(task_1_event,))
+
+t1.start()
+t2.start()
+
+t1.join()
+t2.join()
