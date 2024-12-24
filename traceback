@@ -5,3 +5,29 @@ try:
 except Exception:
   with open(filename,'a') as f:
     traceback.print_exc(file=f)
+
+------------------------------------
+#
+import traceback
+
+class CustomException(Exception):
+    def __init__(self, message):
+        super().__init__(message)
+        self.message = message
+
+    def __str__(self):
+        return self.message
+
+def a():
+
+    try:
+        value = 4/0
+        return value
+    except:
+       return CustomException(traceback.format_exc())
+
+
+exc = a()
+
+if isinstance(exc, Exception):
+    print(True)
